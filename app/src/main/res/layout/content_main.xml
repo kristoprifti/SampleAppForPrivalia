@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".activities.MainActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <kristoprifti.me.sampleappforprivalia.utils.RoundedImageView
+            android:id="@+id/userProfilePicture"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/profile_pic_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round"/>
+
+        <TextView
+            android:id="@+id/nrOfPostsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="@+id/nrOfFollowersTextView"
+            app:layout_constraintTop_toTopOf="@+id/nrOfPostsLabelTextView"
+            tools:text="234"/>
+
+        <TextView
+            android:id="@+id/nrOfPostsLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/posts_label"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            app:layout_constraintLeft_toRightOf="@+id/userProfilePicture"
+            app:layout_constraintTop_toTopOf="@+id/userProfilePicture"/>
+
+        <TextView
+            android:id="@+id/nrOfFollowersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="@+id/nrOfFollowingsTextView"
+            app:layout_constraintTop_toTopOf="@+id/nrOfFollowersLabelTextView"
+            tools:text="4523"/>
+
+        <TextView
+            android:id="@+id/nrOfFollowersLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/followers_label"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            app:layout_constraintLeft_toLeftOf="@+id/nrOfPostsLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nrOfPostsLabelTextView"/>
+
+        <TextView
+            android:id="@+id/nrOfFollowingsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/nrOfFollowingsLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/nrOfFollowingsLabelTextView"
+            tools:text="2534"/>
+
+        <TextView
+            android:id="@+id/nrOfFollowingsLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/following_label"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            app:layout_constraintLeft_toLeftOf="@+id/nrOfFollowersLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nrOfFollowersLabelTextView"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userDescription"/>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/userProfilePicture"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfilePicture"
+            tools:text="dsfdgfdgdsfg"/>
+
+        <TextView
+            android:id="@+id/userDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/userName"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
+            tools:text="fdasgdsfhh"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
+
+

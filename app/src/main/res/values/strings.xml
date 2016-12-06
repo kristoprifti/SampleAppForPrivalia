@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Instagram Sample</string>
+    <string name="posts_label">Number of posts:</string>
+    <string name="followers_label">Number of followers:</string>
+    <string name="following_label">Number of followings:</string>
+    <string name="profile_pic_description">Profile picture for the Instagram user</string>
+    <string name="user_activity_picture_description">Picture that user has posted recently</string>
+    <string name="title_activity_detail">Photo</string>
+    <string name="user_picture_description">Specific picture of the user</string>
+    <string name="nrOfLikesLabel">Likes:</string>
+    <string name="comments_label">Comments:</string>
+</resources>
