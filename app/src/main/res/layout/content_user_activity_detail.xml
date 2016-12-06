@@ -5,105 +5,106 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="8dp">
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <android.support.constraint.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <kristoprifti.me.sampleappforprivalia.utils.RoundedImageView
-        android:id="@+id/userProfilePicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/profile_pic_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round"/>
+        <kristoprifti.me.sampleappforprivalia.utils.RoundedImageView
+            android:id="@+id/userProfilePicture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/profile_pic_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round"/>
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="288dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        tools:text="kristo.prifti"
-        app:layout_constraintTop_toTopOf="@+id/userProfilePicture"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toRightOf="@+id/userProfilePicture"/>
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            tools:text="kristo.prifti"
+            app:layout_constraintTop_toTopOf="@+id/userProfilePicture"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toRightOf="@+id/userProfilePicture"/>
 
-    <TextView
-        android:id="@+id/userLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/userName"
-        app:layout_constraintRight_toRightOf="@+id/userName"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
-        tools:text="Madrid asflksdfdf"/>
+        <TextView
+            android:id="@+id/userLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/userName"
+            app:layout_constraintRight_toRightOf="@+id/userName"
+            app:layout_constraintTop_toBottomOf="@+id/userName"
+            tools:text="Madrid asflksdfdf"/>
 
-    <ImageView
-        android:id="@+id/userActivityPicture"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/user_picture_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfilePicture"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:ignore="VectorDrawableCompat"
-        android:adjustViewBounds="true"/>
+        <ImageView
+            android:id="@+id/userActivityPicture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/user_picture_description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userProfilePicture"
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:ignore="VectorDrawableCompat"
+            android:adjustViewBounds="true"/>
 
-    <TextView
-        android:id="@+id/nrOfLikesLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/nrOfLikesLabel"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userActivityPicture"/>
+        <TextView
+            android:id="@+id/nrOfLikesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/nrOfLikesLabel"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userActivityPicture"/>
 
-    <TextView
-        android:id="@+id/nrOfLikesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/nrOfLikesLabel"
-        app:layout_constraintTop_toTopOf="@+id/nrOfLikesLabel"
-        tools:text="30"/>
+        <TextView
+            android:id="@+id/nrOfLikesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/nrOfLikesLabel"
+            app:layout_constraintTop_toTopOf="@+id/nrOfLikesLabel"
+            tools:text="30"/>
 
-    <TextView
-        android:id="@+id/nrOfCommentsLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/comments_label"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/nrOfLikesTextView"
-        app:layout_constraintTop_toTopOf="@+id/nrOfLikesTextView"/>
+        <TextView
+            android:id="@+id/nrOfCommentsLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/comments_label"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/nrOfLikesTextView"
+            app:layout_constraintTop_toTopOf="@+id/nrOfLikesTextView"/>
 
-    <TextView
-        android:id="@+id/nrOfComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/primary"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/nrOfCommentsLabelTextView"
-        app:layout_constraintTop_toTopOf="@+id/nrOfCommentsLabelTextView"
-        tools:text="56"/>
+        <TextView
+            android:id="@+id/nrOfComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/nrOfCommentsLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/nrOfCommentsLabelTextView"
+            tools:text="56"/>
 
     </android.support.constraint.ConstraintLayout>
 

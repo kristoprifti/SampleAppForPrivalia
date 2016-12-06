@@ -15,6 +15,8 @@ import kristoprifti.me.sampleappforprivalia.utils.RoundedImageView;
 
 /**
  * Created by Kristi on 12/6/2016.
+ * this is the activity responsible for the UserDetailActivity that displays the content of each
+ * item in the recycler view.
  */
 
 public class UserDetailActivity extends BaseActivity {
@@ -26,9 +28,13 @@ public class UserDetailActivity extends BaseActivity {
         setContentView(R.layout.user_detail_activity);
         setupToolbar(true);
 
+        //get intent that has called this activity and get the data passed through this intent
         Intent intent = getIntent();
         UserActivity activity = (UserActivity) intent.getSerializableExtra(USER_ACTIVITY_TRANSFER);
+
+        //check if data is not null
         if(activity != null){
+            //display the data in different views
             TextView userName = (TextView) findViewById(R.id.userName);
             userName.setText(activity.getUserName());
 
@@ -63,7 +69,6 @@ public class UserDetailActivity extends BaseActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == android.R.id.home) {
             finish();
             return true;

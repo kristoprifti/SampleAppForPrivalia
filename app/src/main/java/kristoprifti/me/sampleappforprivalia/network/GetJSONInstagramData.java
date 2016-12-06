@@ -15,8 +15,12 @@ import kristoprifti.me.sampleappforprivalia.models.UserActivity;
 
 /**
  * Created by Kristi on 12/5/2016.
+ * this class is responsible for processing the data after its retrieved from the HTTP get request
+ * it uses models to store the data and pass them between intents as serializable content
  */
 
+//this class implements an interface of GetInstagramData class which gets the data from the server
+// when the data is successfully downloaded the method OnDownloadComplete is overriden and is called in this class
 public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete {
     private static final String TAG = "GetJSONInstagramData";
 
@@ -26,12 +30,17 @@ public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete
     private String mUserActivityUrl;
     private String mUserInfoUrl;
 
+    //variable that holds the callback for the constructor
     private final OnDataAvailable mCallBack;
 
+    //interface which is used by MainActivity to make sure that it calls the OnDataAvailable method
+    //once the downloading is done. Here we pass the list of pictures that the user has posted and the info for the
+    //profile information
     public interface OnDataAvailable{
         void onDataAvailable(List<UserActivity> userActivities, User userInfo);
     }
 
+    //constructor with callback and two json objects in form of strings coming from the GetInstagramData class
     public GetJSONInstagramData(OnDataAvailable callBack, String userActivityUrl, String userInfoUrl) {
         Log.d(TAG, "GetJSONInstagramData called");
         mUserActivityUrl = userActivityUrl;
@@ -39,11 +48,15 @@ public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete
         mCallBack = callBack;
     }
 
+    //this method creates an instance of GetInstagramData class and calls the method sendHttpRequest
     public void sendGetRequest() throws IOException {
         GetInstagramData getRawData = new GetInstagramData(this);
-        getRawData.runInSameThread(mUserInfoUrl, mUserActivityUrl);
+        getRawData.sendHttpRequest(mUserInfoUrl, mUserActivityUrl);
     }
 
+    //implementation of the interface from GetInstagramData
+    //when download is complete this method is called with two json objects as strings and is processing
+    //the data to prepare them for the MainActivity class and the adapter
     @Override
     public void onDownloadComplete(ArrayList<String> data) {
         Log.d(TAG, "onDownloadComplete: starts");
@@ -67,6 +80,7 @@ public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete
         }
     }
 
+    //this method extracts the data from the user information JSONObject and saves them in the User model
     private void setupUserData(JSONObject userData) throws JSONException {
         String username = userData.getJSONObject("data").getString("username");
         String bio = userData.getJSONObject("data").getString("bio");
@@ -80,6 +94,8 @@ public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete
         mUser = new User(username, bio, website, profilePicture, fullName, posts, followers, followings);
     }
 
+    //this method extracts the data from the user activity JSON Object and stores them in an array list of
+    //UserActivity models because here we have the last 20 pictures posted by the user
     private void setupUserActivity(JSONArray userActivityArray) throws JSONException {
         for(int i = 0; i < userActivityArray.length(); i++){
             JSONObject userActivity = userActivityArray.getJSONObject(i);
@@ -92,7 +108,7 @@ public class GetJSONInstagramData implements GetInstagramData.OnDownloadComplete
             String userName = userActivity.getJSONObject("user").getString("username");
             int likes = userActivity.getJSONObject("likes").getInt("count");
             String profilePicUrl = userActivity.getJSONObject("user").getString("profile_picture");
-            String pictureUrl = userActivity.getJSONObject("images").getJSONObject("low_resolution").getString("url");
+            String pictureUrl = userActivity.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
 
             UserActivity userActivityObject = new UserActivity(pictureLocation, comments, userName, likes, profilePicUrl, pictureUrl);
             mPicturesList.add(userActivityObject);

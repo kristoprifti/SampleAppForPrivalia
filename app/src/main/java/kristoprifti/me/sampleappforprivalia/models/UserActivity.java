@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 /**
  * Created by Kristi on 12/5/2016.
+ * this is a serializable model for the UserActivity
+ * it contains of variables for each user activity information and also getters and setters
+ * it also contains a constructor which is used to initialize the model
  */
 
 public class UserActivity implements Serializable{

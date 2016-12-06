@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 /**
  * Created by Kristi on 12/5/2016.
+ * this is a serializable model for the User
+ * it contains of variables for each user information and also getters and setters
+ * it also contains a constructor which is used to initialize the model
  */
 
 public class User implements Serializable {
@@ -92,6 +95,7 @@ public class User implements Serializable {
         mFollowing = following;
     }
 
+    //this method is used for purpose of testing while logging the values
     @Override
     public String toString() {
         return "User{" +

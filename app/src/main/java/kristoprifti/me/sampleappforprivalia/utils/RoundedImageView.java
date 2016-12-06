@@ -14,6 +14,9 @@ import android.widget.ImageView;
 
 /**
  * Created by Kristi on 12/6/2016.
+ * this class extends the imageview and with the help of a bitmap it makes
+ * the imageview circle shaped. we can also specify a border width in order to create a border
+ * http://stackoverflow.com/questions/16208365/how-to-create-a-circular-imageview-in-android
  */
 
 public class RoundedImageView extends ImageView {
@@ -49,7 +52,6 @@ public class RoundedImageView extends ImageView {
         setBorderColor(Color.WHITE);
         paintBorder.setAntiAlias(true);
         this.setLayerType(LAYER_TYPE_SOFTWARE, paintBorder);
-        paintBorder.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
     }
 
     public void setBorderColor(int borderColor) {

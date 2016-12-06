@@ -30,6 +30,12 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:cardview-v7:25.0.1'
+
+    //one very interestig approach between Picasso and Glide
+    //https://medium.com/@multidots/glide-vs-picasso-930eed42b81d#.j85u5dbcx
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+    //another interesting approach on why to make use of libraries such as OKHTTP
+    //https://medium.com/square-corner-blog/announcing-okhttp-a6497dab6114#.6gqfxf2ox
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
 }
