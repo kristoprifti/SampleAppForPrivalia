@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -23,6 +24,7 @@ import kristoprifti.me.sampleappforprivalia.adapters.RecyclerItemClickListener;
 import kristoprifti.me.sampleappforprivalia.models.User;
 import kristoprifti.me.sampleappforprivalia.models.UserActivity;
 import kristoprifti.me.sampleappforprivalia.network.GetJSONInstagramData;
+import kristoprifti.me.sampleappforprivalia.utils.InternetConnectionCheck;
 import kristoprifti.me.sampleappforprivalia.utils.RoundedImageView;
 
 // we implement OnDataAvailable to override the onDataAvailable method
@@ -31,11 +33,19 @@ public class MainActivity extends BaseActivity implements GetJSONInstagramData.O
         RecyclerItemClickListener.OnRecyclerClickListener {
 
     private static final String TAG = "MainActivity";
+
+    //This information is confidential as it includes the token of my INSTAGRAM account. For purpose of testing im letting it here...Please dont share it :)
+    private static final String USER_TOKEN = "199917231.4a7c055.1ae97dee8190479495a2ec857aa8e936";
+    private static final String USER_INFO = "https://api.instagram.com/v1/users/self/media/recent/?access_token=";
+    private static final String USER_ACTIVITY = "https://api.instagram.com/v1/users/self/?access_token=";
+
     private InstagramRecyclerViewAdapter mInstagramRecyclerViewAdapter;
     private TextView mPosts, mFollowers, mFollowing, mUserName, mDescription;
     private RoundedImageView mProfilePicture;
     private ConstraintLayout mConstraintLayout;
     private ProgressBar mProgressBar;
+
+    private InternetConnectionCheck internetConnectionCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,8 @@ public class MainActivity extends BaseActivity implements GetJSONInstagramData.O
         mConstraintLayout = (ConstraintLayout) findViewById(R.id.content_main);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        internetConnectionCheck = new InternetConnectionCheck();
+
         //initialize the recyclerview and set a staggered grid layout manager to it
         //with two columns and a vertical position
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -65,22 +77,42 @@ public class MainActivity extends BaseActivity implements GetJSONInstagramData.O
         recyclerView.setAdapter(mInstagramRecyclerViewAdapter);
         recyclerView.setNestedScrollingEnabled(true);
 
+        validateInternetConnection();
+
         Log.d(TAG, "onCreate: ends");
     }
 
-    @Override
-    protected void onResume() {
-        Log.d(TAG, "onResume: starts");
-        super.onResume();
+    private void validateInternetConnection(){
+        try {
+            if(internetConnectionCheck.hasActiveInternetConnection()){
+                runGetRequest();
+            } else {
+                mConstraintLayout.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.INVISIBLE);
+                Snackbar snackbar = Snackbar
+                        .make(mConstraintLayout, "No Internet Connection!", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                validateInternetConnection();
+                            }
+                        });
+                snackbar.show();
+            }
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void runGetRequest(){
         //display progress bar to the user until the data is fetched and processed
         mConstraintLayout.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.VISIBLE);
 
         //create an instance of GetJSONInstagramData class and pass the two URLs to its constructor
         GetJSONInstagramData getJSONInstagramData = new GetJSONInstagramData(this,
-                "https://api.instagram.com/v1/users/self/media/recent/?access_token=199917231.4a7c055.1ae97dee8190479495a2ec857aa8e936",
-                "https://api.instagram.com/v1/users/self/?access_token=199917231.4a7c055.1ae97dee8190479495a2ec857aa8e936");
+                USER_INFO.concat(USER_TOKEN),
+                USER_ACTIVITY.concat(USER_TOKEN));
 
         //call the method to send the get request and get the data
         try {
@@ -88,7 +120,12 @@ public class MainActivity extends BaseActivity implements GetJSONInstagramData.O
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume: starts");
+        super.onResume();
         Log.d(TAG, "onResume: ends");
     }
 

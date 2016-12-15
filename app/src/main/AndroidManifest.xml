@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="kristoprifti.me.sampleappforprivalia"
+<manifest xmlns:tools="http://schemas.android.com/tools"
+          package="kristoprifti.me.sampleappforprivalia"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -12,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:fullBackupContent="true">
-        <activity android:name=".activities.MainActivity">
+        android:fullBackupContent="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -23,7 +27,8 @@
         <activity
             android:name=".activities.UserDetailActivity"
             android:label="@string/title_activity_detail"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity"/>
